@@ -1,8 +1,7 @@
 
 
 
-document.querySelector(".remaining").textContent = 0;
-document.querySelector(".expenses").textContent = 0;
+
 function submitData(){
     let capital,name,price;
     capital = document.querySelector("#select").value;
