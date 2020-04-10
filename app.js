@@ -182,7 +182,12 @@ function remaining(){
     
 
     let remaining = income - expense;
-    document.querySelector(".remaining").textContent = "+$"+remaining;
+    if(remaining<0){
+        document.querySelector(".remaining").textContent = "-$"+remaining*-1;
+    }else{
+        document.querySelector(".remaining").textContent = "+$"+remaining;
+    }
+    
     
 }
 remaining();
