@@ -78,25 +78,28 @@ function displayData(){
         
     })
 
-
-    let expense = localStorage.getItem("Expenses");//string
-    expense = JSON.parse(expense);//objects
-    expense = Object.values(expense);//arrays
     
-    expense.forEach((item) =>{
-        let tableBody = document.querySelector(".tableBodySecond");
-        let tableRow = document.createElement("tr");
-        let tableDataFirst = document.createElement("td");
-        let tableDataSecond = document.createElement("td");
-        tableDataFirst.textContent =item.name;
-        tableDataSecond.textContent ="$"+ item.price+".00";
+    let expense = localStorage.getItem("Expenses");//string
+    if(expense){
+        expense = JSON.parse(expense);//objects
+        expense = Object.values(expense);//arrays
+        
+        expense.forEach((item) =>{
+            let tableBody = document.querySelector(".tableBodySecond");
+            let tableRow = document.createElement("tr");
+            let tableDataFirst = document.createElement("td");
+            let tableDataSecond = document.createElement("td");
+            tableDataFirst.textContent =item.name;
+            tableDataSecond.textContent ="$"+ item.price+".00";
 
-        tableBody.appendChild(tableRow);
-        tableRow.appendChild(tableDataFirst);
-        tableRow.appendChild(tableDataSecond);
-        
-        
+            tableBody.appendChild(tableRow);
+            tableRow.appendChild(tableDataFirst);
+            tableRow.appendChild(tableDataSecond);
     })
+    
+        
+        
+    };
 }
 
 displayData();
@@ -124,19 +127,23 @@ totalIncome();
 function totalExpense(){
     totalPrice = 0;
     //fetching income from ls
+    
     let expense = localStorage.getItem("Expenses");
-    //converting to object
-    expense = JSON.parse(expense);
-    //converting to array
-    expense = Object.values(expense);
-    //looping through each items in an array
-    for(let i=0;i<expense.length;i++){
-        let price = expense[i].price;
-        price = parseInt(price);
-        totalPrice += price;
-        
+    if(expense){
+        //converting to object
+        expense = JSON.parse(expense);
+        //converting to array
+        expense = Object.values(expense);
+        //looping through each items in an array
+        for(let i=0;i<expense.length;i++){
+            let price = expense[i].price;
+            price = parseInt(price);
+            totalPrice += price;
+            
+        }
+        localStorage.setItem("totalExpense",totalPrice);
     }
-    localStorage.setItem("totalExpense",totalPrice);
+    
 }
 totalExpense();
 
@@ -147,8 +154,14 @@ function total(){
     incomePrice = parseInt(incomePrice);
     //fetching income
     let expensePrice = localStorage.getItem("totalExpense");
-    //converting to integer
-    expensePrice = parseInt(expensePrice);
+    if(expensePrice){
+        //converting to integer
+        expensePrice = parseInt(expensePrice);
+    }else{
+        expensePrice = 0;
+    }
+    
+    
     
     localStorage.setItem("Total",incomePrice+expensePrice);
     document.querySelector(".expenses").textContent = "-$"+expensePrice;
@@ -161,7 +174,12 @@ function remaining(){
     let income = localStorage.getItem("totalIncome");
     income = parseInt(income);
     let expense = localStorage.getItem("totalExpense");
-    expense = parseInt(expense);
+    if(expense){
+        expense = parseInt(expense);
+    }else{
+        expense = 0;
+    }
+    
 
     let remaining = income - expense;
     document.querySelector(".remaining").textContent = "+$"+remaining;
