@@ -1,0 +1,57 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    
+    
+}
+.content{
+    background-image: linear-gradient(to right,rgb(67, 171, 241) ,rgb(228, 216, 216));
+}
+h1{
+    color:white;
+}
+.heading{
+    margin: 0 auto;
+    
+}
+.expense{
+    margin:0 auto;
+}
+
+
+input[type="number"]{
+    width:100%;
+    border:1px solid gray;
+}
+input[type="text"]{
+    width:100%;
+    border:1px solid gray;
+}
+select{
+    width:100%;
+    background-color: white;
+}
+
+
+
+
+
+
+
+@media all and (max-width:640px){
+    
+    select{
+        width:
+    }
+    input[type="text"],input[type="number"]{
+        height: 24px;
+    }    
+    
+}
+@media all and (max-width:260px){
+    *{
+        font-size: 10px;
+    }
+}
